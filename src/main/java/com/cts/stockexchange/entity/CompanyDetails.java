@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.Constraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.cts.stockexchange.enumValues.StockExchange;
 
@@ -23,12 +25,12 @@ public class CompanyDetails {
 	private String name;
 	@NotBlank(message = "CEO is mandatory")
 	private String ceo;
-	@NotBlank(message = "Turn Over is mandatory")
+	
 	@Min(value = 100000000,message = "Minimum turn over must be 10CR")
 	private float trunOver;
 	@NotBlank(message = "Company website is mandatory")
 	private String website;
-	@NotBlank(message = "Company stock-exchange is mandatory")
+	
 	private StockExchange stockExchange;
 	
 	public CompanyDetails() {}
@@ -87,6 +89,12 @@ public class CompanyDetails {
 
 	public void setStockExchange(StockExchange stockExchange) {
 		this.stockExchange = stockExchange;
+	}
+
+	@Override
+	public String toString() {
+		return "CompanyDetails [id=" + id + ", code=" + code + ", name=" + name + ", ceo=" + ceo + ", trunOver="
+				+ trunOver + ", website=" + website + ", stockExchange=" + stockExchange + "]";
 	}
 	
 }
