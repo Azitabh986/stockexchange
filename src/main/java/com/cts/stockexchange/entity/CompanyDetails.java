@@ -1,15 +1,20 @@
 package com.cts.stockexchange.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.Constraint;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
 
 import com.cts.stockexchange.enumValues.StockExchange;
 
@@ -20,6 +25,7 @@ public class CompanyDetails {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	@Column(unique = true)
+	@NotBlank(message = "Company Code is mandatory")
 	private String code;
 	@NotBlank(message = "Company name is mandatory")
 	private String name;
@@ -32,6 +38,9 @@ public class CompanyDetails {
 	private String website;
 	
 	private StockExchange stockExchange;
+	
+	@OneToMany(mappedBy = "companyDetails", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<StockPrice> stockPrice;
 	
 	public CompanyDetails() {}
 
@@ -90,11 +99,24 @@ public class CompanyDetails {
 	public void setStockExchange(StockExchange stockExchange) {
 		this.stockExchange = stockExchange;
 	}
+	
+	
+	public List<StockPrice> getStockPrice() {
+		return stockPrice;
+	}
+
+	public void setStockPrice(List<StockPrice> stockPrice) {
+		this.stockPrice = stockPrice;
+	}
 
 	@Override
 	public String toString() {
 		return "CompanyDetails [id=" + id + ", code=" + code + ", name=" + name + ", ceo=" + ceo + ", trunOver="
-				+ trunOver + ", website=" + website + ", stockExchange=" + stockExchange + "]";
+				+ trunOver + ", website=" + website + ", stockExchange=" + stockExchange + ", stockPrice=" + stockPrice
+				+ "]";
 	}
+
+	
+	
 	
 }
