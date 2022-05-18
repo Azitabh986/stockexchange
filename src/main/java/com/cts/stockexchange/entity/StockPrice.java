@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -27,6 +29,7 @@ public class StockPrice {
 	private Date updatedTime;
 	@ManyToOne(fetch = FetchType.LAZY,optional = false)
 	@JoinColumn(name = "code",nullable=false)
+	@JsonIgnore
 	private CompanyDetails companyDetails;
 	
 	public StockPrice() {}
