@@ -8,11 +8,28 @@
 		{
 			"name": "comapny-details-save",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBenQ5ODYiLCJpYXQiOjE2NTMwMjIyMzQsImV4cCI6MTY1MzAyODIzNH0.HqZWSbezgr9UIoVw2mQnllPczyyR3Rc2w2USOVNa454lMUN0F4ijLUCRd39CT1G9tJR9AnTBAitDhTplHyDsFw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBenQ5ODYiLCJpYXQiOjE2NTMwMTMyMDAsImV4cCI6MTY1MzAxOTIwMH0.2WNuR6pb0F93WDsO3UcNiiw-dIxwhSNFV3O-tCjRKNVQji_LWN4gUCfTQwwpdVA09BmiwQ1Djh1EccXE3VCMLA",
+						"type": "default",
+						"disabled": true
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"code\":\"Ad1019\",\r\n    \"name\":\"Azitabh Group's\",\r\n    \"ceo\":\"A Dinesh\",\r\n    \"trunOver\":\"100000222.00\",\r\n    \"website\":\"https://azitabh.co.in\",\r\n    \"stockExchange\":\"NSE\"\r\n}",
+					"raw": "{\r\n    \"code\":\"AD11\",\r\n    \"name\":\"Azitabh Group's\",\r\n    \"ceo\":\"A Dinesh\",\r\n    \"trunOver\":\"100000222.00\",\r\n    \"website\":\"https://azitabh.co.in\",\r\n    \"stockExchange\":\"NSE\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,11 +55,21 @@
 		{
 			"name": "comapny-details-stock-price-save",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBenQ5ODYiLCJpYXQiOjE2NTMwMTI5NTEsImV4cCI6MTY1MzAxODk1MX0.79rpt6ufeBqAszotcQ1SKFQ28wQDbkqpjW1WG5J5Y1Em2eU_StSIDzq0q8pZT-f90sjqoIbTRpK2b_GgKaqmhw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"stockPrice\":1000900\r\n}",
+					"raw": "{\r\n   \"stockPrice\":100550780\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -50,7 +77,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/api/v1.0/market/stock/add/Ad1019",
+					"raw": "{{host}}/api/v1.0/market/stock/add/AD1",
 					"host": [
 						"{{host}}"
 					],
@@ -60,7 +87,7 @@
 						"market",
 						"stock",
 						"add",
-						"Ad1019"
+						"AD1"
 					]
 				}
 			},
@@ -151,6 +178,64 @@
 						"Ad1019",
 						"2022-05-18T07:18:22.837+00:00",
 						"2022-05-18T07:56:10.884+00:00"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Azt986\",\r\n    \"email\":\"azitabhdinesh@yahoo.com\",\r\n    \"password\":\"Azt@986980\",\r\n    \"role\":[\"ROLE_ADMIN\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1.0/auth/signup",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sing-in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"username\":\"Azt986\",\r\n     \"password\":\"Azt@986980\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1.0/auth/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1.0",
+						"auth",
+						"login"
 					]
 				}
 			},

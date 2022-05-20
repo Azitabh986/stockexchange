@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +42,7 @@ public class CompanyResource {
 		
 		return companyService.saveCompDetails(company);
 	}
-	
+	@Transactional
 	@PostMapping("/market/stock/add/{companyCode}")
 	public ResponseEntity<String> addStockPrice(@Valid @PathVariable String companyCode,@RequestBody StockPrice stockPrice){
 		return companyService.addStockPrices(companyCode,stockPrice);
