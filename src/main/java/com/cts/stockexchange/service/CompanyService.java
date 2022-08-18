@@ -2,6 +2,7 @@ package com.cts.stockexchange.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -49,6 +50,28 @@ public class CompanyService {
 	public ResponseEntity<List<CompanyDetails>> retrieveAllCompanyDetails() {
 		List<CompanyDetails> cd= companyRepo.findAll();
 		return new ResponseEntity<List<CompanyDetails>>(cd,HttpStatus.OK);
+	}
+
+	public ResponseEntity<?> getByCompanyCode(String companycode) {
+		CompanyDetails cd=companyRepo.findByCode(companycode);
+		if(cd==null)
+			throw new RuntimeException("Company doesn't Exits.");
+		return new ResponseEntity<Object>(cd,HttpStatus.OK);
+	}
+
+	public ResponseEntity<List<StockPrice>> getCompanyDetailsByCodeAndDate(String companycode, Date startdate,
+			Date enddate) {
+		List<StockPrice> filterSP;
+		List<CompanyDetails> companyDetails=(List<CompanyDetails>) companyRepo.findAll();
+		List<CompanyDetails> cd=companyDetails.stream().filter(i->i.getCode().equals(companycode)).collect(Collectors.toList());
+		if(cd.size()>0) {
+			List<StockPrice> stockPrices=cd.get(0).getStockPrice();
+			filterSP=stockPrices.stream()
+					.filter(i->i.getUpdatedTime().after(startdate) && i.getUpdatedTime().before(enddate) ).collect(Collectors.toList());
+		}else {
+			throw new RuntimeException("Company doesn't exists!");
+		}
+		return new ResponseEntity<List<StockPrice>>(filterSP,HttpStatus.OK);
 	}
 
 

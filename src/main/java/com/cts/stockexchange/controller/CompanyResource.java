@@ -2,12 +2,14 @@ package com.cts.stockexchange.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,5 +60,14 @@ public class CompanyResource {
 	@GetMapping("/market/company/getall")
 	public ResponseEntity<List<CompanyDetails>> getAllData(){
 		return companyService.retrieveAllCompanyDetails();
+	}
+	
+	@GetMapping("/market/company/info/{companycode}")
+	public ResponseEntity<?> getDetailsByCompanyCode(@PathVariable String companycode){
+		return companyService.getByCompanyCode(companycode);
+	}
+	@GetMapping("/market/stock/get/{companycode}/{startdate}/{enddate}")
+	public ResponseEntity<List<StockPrice>> getAllCompanyPriceList(@PathVariable("companycode") String companycode,@PathVariable("startdate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startdate,@DateTimeFormat(pattern = "yyyy-MM-dd")@PathVariable("enddate") Date enddate){
+		return companyService.getCompanyDetailsByCodeAndDate(companycode,startdate,enddate);
 	}
 }
