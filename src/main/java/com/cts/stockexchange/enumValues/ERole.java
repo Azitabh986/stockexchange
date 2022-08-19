@@ -1,6 +1,5 @@
 package com.cts.stockexchange.enumValues;
 public enum ERole {
   ROLE_USER,
-  ROLE_ADMIN,
-  ROLE_SPECIAL
+  ROLE_ADMIN
 }
