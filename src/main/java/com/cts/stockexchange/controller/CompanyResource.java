@@ -31,6 +31,8 @@ import com.cts.stockexchange.service.CompanyService;
 @RestController
 @RequestMapping("/api/v1.0")
 @CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(methods =
+[RequestMethod.GET, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.POST])
 public class CompanyResource {
 	
 	private final static Logger logger=org.slf4j.LoggerFactory.getLogger(CompanyResource.class);
@@ -46,13 +48,13 @@ public class CompanyResource {
 		
 		return companyService.saveCompDetails(company);
 	}
-	@CrossOrigin
+	
 	@Transactional
 	@PostMapping("/market/stock/add/{companyCode}")
 	public ResponseEntity<String> addStockPrice(@Valid @PathVariable String companyCode,@RequestBody StockPrice stockPrice){
 		return companyService.addStockPrices(companyCode,stockPrice);
 	}
-	@CrossOrigin
+	
 	@DeleteMapping("/market/stock/delete/{companyCode}")
 	public ResponseEntity<String> deleteCompanyDetails(@Valid @PathVariable String companyCode){
 		return companyService.deleteCompanyInfo(companyCode);
