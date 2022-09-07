@@ -30,9 +30,9 @@ import com.cts.stockexchange.service.CompanyService;
 
 @RestController
 @RequestMapping("/api/v1.0")
-@CrossOrigin(origins = "*", allowedHeaders = undefined, maxAge = 3600)
-// @CrossOrigin(methods =
-// [RequestMethod.GET, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.POST])
+// @CrossOrigin(origins = "*", allowedHeaders = undefined, maxAge = 3600)
+@CrossOrigin(origins = "*", methods =
+	     {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.POST}, maxAge = 3600)
 public class CompanyResource {
 	
 	private final static Logger logger=org.slf4j.LoggerFactory.getLogger(CompanyResource.class);
