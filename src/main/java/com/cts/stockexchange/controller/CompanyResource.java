@@ -30,7 +30,7 @@ import com.cts.stockexchange.service.CompanyService;
 
 @RestController
 @RequestMapping("/api/v1.0")
-@CrossOrigin(origins = "*", maxAge = 3600)
+// @CrossOrigin(origins = "*", maxAge = 3600)
 @CrossOrigin(methods =
 [RequestMethod.GET, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.POST])
 public class CompanyResource {
