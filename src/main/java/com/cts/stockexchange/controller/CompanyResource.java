@@ -27,6 +27,7 @@ import com.cts.stockexchange.entity.StockPrice;
 import com.cts.stockexchange.repository.CompanyRepository;
 import com.cts.stockexchange.repository.StockPriceRepository;
 import com.cts.stockexchange.service.CompanyService;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 @RequestMapping("/api/v1.0")
