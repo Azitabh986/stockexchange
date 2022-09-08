@@ -52,12 +52,12 @@ public class CompanyResource {
 	
 	@Transactional
 	@PostMapping("/market/stock/add/{companyCode}")
-	public ResponseEntity<String> addStockPrice(@Valid @PathVariable String companyCode,@RequestBody StockPrice stockPrice){
+	public ResponseEntity<?> addStockPrice(@Valid @PathVariable String companyCode,@RequestBody StockPrice stockPrice){
 		return companyService.addStockPrices(companyCode,stockPrice);
 	}
 	
 	@DeleteMapping("/market/stock/delete/{companyCode}")
-	public ResponseEntity<String> deleteCompanyDetails(@Valid @PathVariable String companyCode){
+	public ResponseEntity<?> deleteCompanyDetails(@Valid @PathVariable String companyCode){
 		return companyService.deleteCompanyInfo(companyCode);
 	}
 	
