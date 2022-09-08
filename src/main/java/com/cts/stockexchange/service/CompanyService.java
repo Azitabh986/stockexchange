@@ -29,22 +29,22 @@ public class CompanyService {
 		return new ResponseEntity<CompanyDetails>(company,HttpStatus.CREATED);
 	}
 
-	public ResponseEntity<String> addStockPrices(String companyCode, StockPrice stockPrice) {
+	public ResponseEntity<?> addStockPrices(String companyCode, StockPrice stockPrice) {
 		stockPrice.setUpdatedTime(new Date());
 		CompanyDetails cd=companyRepo.findByCode(companyCode);
 		if(cd==null)
 			throw new RuntimeException("Company doesn't Exits.");
 		stockPrice.setCompanyDetails(cd);
 		stockPriceRepo.save(stockPrice);
-		return new ResponseEntity<String>("For "+companyCode+" is inserted the stock price.",HttpStatus.CREATED);
+		return new ResponseEntity<>(cd,HttpStatus.CREATED);
 	}
 
-	public ResponseEntity<String> deleteCompanyInfo( String companyCode) {
+	public ResponseEntity<?> deleteCompanyInfo( String companyCode) {
 		CompanyDetails cd=companyRepo.findByCode(companyCode);
 		if(cd==null)
 			throw new RuntimeException("Company doesn't Exits.");
 		companyRepo.deleteById(cd.getId());
-		return  new ResponseEntity<String>("For "+companyCode+" is deleted.",HttpStatus.OK);
+		return  new ResponseEntity<>(cd,HttpStatus.OK);
 	}
 
 	public ResponseEntity<List<CompanyDetails>> retrieveAllCompanyDetails() {
